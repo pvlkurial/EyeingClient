@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+</head>
+<body>
+<h1>Welcome, <span th:text="${user.username}">User</span>!</h1>
+
+<p>Your password: <span th:text="${user.password}">Password</span></p>
+</body>
+</html>

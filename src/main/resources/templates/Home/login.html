@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+<div class="w-full max-w-md bg-white shadow-lg rounded-lg p-8">
+    <h1 class="text-2xl font-bold text-gray-800 text-center mb-6">Login</h1>
+    <!-- Login Form -->
+    <form th:action="@{/login}" method="post">
+        <div class="mb-4">
+            <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+            <input type="text" id="username" name="username"
+                   th:value="${loginRequest.username}"
+                   class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                   required>
+        </div>
+        <div class="mb-6">
+            <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+            <input type="password" id="password" name="password"
+                   th:value="${loginRequest.password}"
+                   class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                   required>
+        </div>
+        <div class="flex items-center justify-between">
+            <button type="submit"
+                    class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition duration-200">
+                Login
+            </button>
+        </div>
+    </form>
+
+    <!-- Error Message -->
+    <div th:if="${error}" class="mt-4">
+        <p th:text="${error}" class="text-red-600 text-center"></p>
+    </div>
+</div>
+</body>
+</html>

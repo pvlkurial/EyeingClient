@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen h-full m-0">
+<div th:insert="fragments/navbar"></div>
+<div class="container mx-auto px-4 py-6">
+    <!-- User Information -->
+    <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+        <h1 th:text="${user.username}" class="text-2xl font-bold text-gray-800 mb-2">User Name</h1>
+    </div>
+
+    <!-- Blogs Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div th:each="blog : ${blogs}" class="bg-white shadow-md rounded-lg p-4 flex flex-col items-center">
+            <a th:href="@{'/blogs/' + ${blog.id_blog}}" class="text-lg font-semibold text-gray-800 mb-2" th:text="${blog.title}">Blog Title</a>
+            <p class="text-gray-600 text-sm" th:text="${blog.getId_blog()}">Blog summary goes here...</p>
+        </div>
+    </div>
+
+    <!-- Create Blog Button -->
+    <div class="flex justify-center mt-8">
+        <a href="/blogs/create" class="flex items-center bg-gray-200 text-gray-700 px-6 py-3 rounded-lg shadow hover:bg-gray-300 transition duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+            Create a Blog
+        </a>
+    </div>
+</div>
+</body>
+</html>

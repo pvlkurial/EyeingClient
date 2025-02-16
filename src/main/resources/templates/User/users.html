@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App_Users</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 h-full m-0">
+<div th:insert="fragments/navbar"></div>
+<div class="container mx-auto">
+    <h1 class="text-2xl font-bold text-center mb-6">All Users</h1>
+    <!-- Grid container -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <!-- Each user card -->
+        <a th:each="user : ${users}"
+           th:href="@{'/users/' + ${user.username}}"
+           class="bg-white shadow-md rounded-lg p-4 text-center transform transition-colors duration-200 hover:bg-gray-200 hover:shadow-lg">
+            <p class="text-lg font-semibold text-gray-800" th:text="${user.display_name}">Username</p>
+        </a>
+    </div>
+</div>
+</body>
+</html>

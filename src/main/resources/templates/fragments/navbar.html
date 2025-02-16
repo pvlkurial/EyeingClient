@@ -1,0 +1,55 @@
+<!-- fragments/navbar.html -->
+<nav class="bg-slate-800 shadow-lg">
+    <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between h-16">
+            <!-- Left: Logo -->
+            <div class="flex items-center">
+                <a href="/" class="flex items-center text-slate-100 text-2xl font-bold">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M1.5 12s4.5-7.5 10.5-7.5S22.5 12 22.5 12 18 19.5 12 19.5 1.5 12 1.5 12z" />
+                        <circle cx="12" cy="12" r="3" fill="currentColor" />
+                    </svg>
+
+                    Eyeing
+                </a>
+            </div>
+
+            <!-- Right: Navigation Links -->
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="/blogs" class="text-slate-300 hover:text-slate-100 transition duration-200">Blogs</a>
+                <a href="/users" class="text-slate-300 hover:text-slate-100 transition duration-200">Users</a>
+                <a href="/profile" class="bg-slate-600 text-slate-100 px-4 py-2 rounded-lg shadow hover:bg-slate-500 transition duration-200">
+                    Profile
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-slate-300 focus:outline-none focus:text-slate-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-slate-700 border-t border-slate-600">
+        <a href="/blogs" class="block py-2 px-4 text-slate-300 hover:bg-slate-600">Blogs</a>
+        <a href="/users" class="block py-2 px-4 text-slate-300 hover:bg-slate-600">Users</a>
+        <a href="/profile" class="block py-2 px-4 text-white bg-slate-600 hover:bg-slate-500">Profile</a>
+    </div>
+</nav>
+
+<!-- Add minimal padding below the navbar -->
+<div class="pt-2"></div>
+
+<script>
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+</script>

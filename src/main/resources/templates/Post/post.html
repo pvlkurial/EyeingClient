@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen h-full m-0">
+<div th:insert="fragments/navbar"></div>
+<div class="container mx-auto">
+    <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+        <h1 th:text="${post.title}" class="text-2xl font-bold text-gray-800 mb-2"> </h1>
+        <a th:href="@{'/users/id/' + ${post.author}}" th:text="'Author: ' + ${post.author}">Author</a>
+        <h2 th:text="${post.description}"></h2>
+
+    </div>
+</div>
+<div class="relative">
+    <!-- Hidden Checkbox to Toggle Dropdown -->
+    <input type="checkbox" id="dropdownToggle" class="hidden">
+
+    <!-- Dropdown Trigger -->
+    <label for="dropdownToggle" class="bg-blue-500 text-white px-4 py-2 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-300">
+        Show Blogs
+    </label>
+
+    <!-- Dropdown Content -->
+    <div
+            id="blogDropdown"
+            class="hidden absolute bg-white shadow-md rounded-lg p-4 mt-2 w-full max-w-xs">
+        <div th:each="blog : ${blogs}" class="mb-2">
+            <a th:href="@{'/blogs/' + ${blog.id_blog}}"
+               class="block text-lg font-semibold text-gray-800 hover:underline"
+               th:text="${blog.title}">
+                Blog Title
+            </a>
+        </div>
+    </div>
+    <style>
+        #dropdownToggle:checked + label + #blogDropdown {
+            display: block;
+        }
+    </style>
+</div>
+
+
+<div th:each="blog : ${myBlogs}" class="mb-2">
+    <form th:action="@{'/posts/' + ${post.id_post} + '/addto/' + ${blog.id_blog}}" method="post" class="inline">
+        <input type="hidden" name="token" th:value="${jwtToken}" />
+        <button type="submit"
+                class="block text-lg font-semibold text-gray-800 hover:underline bg-transparent border-none p-0 cursor-pointer"
+                th:text="${blog.title}">
+            Blog Title
+        </button>
+    </form>
+</div>
+
+<div>
+    <form th:if="${user != null and user.id_user == post.author}" th:action="@{'/posts/' + ${post.id_post} + '/delete'}" method="post" class="inline">
+        <input type="hidden">
+        <button type="submit"
+                class="bg-red-500 hover:bg-red-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                th:text="'Delete Post'">Delete Post
+        </button>
+    </form>
+
+</div>
+<p th:if="${user == null}" class="text-gray-500">Loading user details...</p>
+</body>
+</html>
